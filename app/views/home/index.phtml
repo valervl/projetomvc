@@ -1,0 +1,10 @@
+                <div class="panel-body">
+                    <?php 
+                        echo isset($this->menu) ? $this->menu->getMenu() : '';
+                    ?>
+                    <h4 class="alert alert-success">
+                        Uhull! Você foi autenticado com sucesso!
+                    </h4>
+                    Olá <?php echo $view_user->name; ?>, seja bem vindo(a). <br>
+                    <a href="<?php echo BASE . 'login/sair'; ?>" class="btn btn-danger">Sair</a>
+                </div>

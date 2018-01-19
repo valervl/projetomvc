@@ -1,0 +1,58 @@
+<div class="panel-body">
+	<?php 
+		echo isset($this->menu) ? $this->menu->getMenu() : '';
+		echo (isset($this->alert) ? $this->alert : '');
+
+		$values = [
+			'name' => $view_user->name,
+			'username' => $view_user->username,
+			'email' => $view_user->email
+		];
+
+		Form::open('editarusuario', $values, [
+			'action' => BASE . 'perfil/editar/',
+			'enctype' => 'multipart/form-data',
+			'prevent' => [
+				'focus'
+			]
+		]);
+			if (!is_null($view_user->image)) {
+				echo '<img src="' . BASE . 'public/uploads/users/' . $view_user->id . '/' . $view_user->image . '" width="200">';
+			}
+			Form::File(
+				'Imagem do usuário:',
+				'image'
+			);
+			Form::Textbox(
+				'Nome:',
+				'name',
+				[
+					'required' => 1
+				]
+			);
+			Form::Textbox(
+				'Login:',
+				'username',
+				[
+					'required' => 1
+				]
+			);
+			Form::Email(
+				'E-mail:',
+				'email',
+				[
+					'required' => 1
+				]
+			);
+			Form::Password(
+				'Senha (Preencha apenas se desejar alterar):',
+				'password'
+			);
+
+			Form::Button('Atualizar perfil', 'submit', [
+				'class' => 'btn-success hxphp-submit-button'
+			]);
+
+		Form::close(false);
+	?>
+</div>
